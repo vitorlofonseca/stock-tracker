@@ -1,12 +1,11 @@
-﻿using StockTracker.Domain.Entities;
-using System;
+﻿using System;
 
-namespace StockTracker.Domain.ValueObjects
+namespace StockTracker.Api.DTOs
 {
-    public class News
+    public class NewsDTO
     {
         public string Url { get; set; }
-        public NewsSource NewsSource { get; set; }
+        public NewsSourceDTO NewsSource { get; set; }
         public string Author { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

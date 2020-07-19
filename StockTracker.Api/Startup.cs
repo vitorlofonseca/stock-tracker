@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StockTracker.Api.Extensions;
 using StockTracker.Api.HubConfig;
+using StockTracker.Api.Services;
 
 namespace StockTracker
 {
@@ -31,7 +32,13 @@ namespace StockTracker
 
             services.AddSignalR();
             services.ConfigureHttpConsumerServices(Configuration);
+            services.ConfigureDALLayer(Configuration);
             services.ConfigureApiServices();
+            services.ConfigureSwaggerGen();
+
+            services.AddScoped<ISubscriberService, SubscriberService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<INewsService, NewsService>();
 
             services.AddControllers();
         }
@@ -43,19 +50,20 @@ namespace StockTracker
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseCors("CorsPolicy");
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapHub<NewsHub>("/news");
-            });
+            app.UseHttpsRedirection()
+                .UseRouting()
+                .UseCors("CorsPolicy")
+                .UseAuthorization()
+                .UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock Tracker API");
+                })
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                    endpoints.MapHub<NewsHub>("/news");
+                });
         }
     }
 }

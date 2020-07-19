@@ -2,11 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <RootNamespace>Compositions.Backend.Application.Api</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.5.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\StockTracker.Domain\StockTracker.Domain.csproj" />
     <ProjectReference Include="..\StockTracker.Infra.HttpConsumer\StockTracker.Infra.HttpConsumer.csproj" />
+    <ProjectReference Include="..\StockTraker.Infra.DAL\StockTraker.Infra.DAL.csproj" />
   </ItemGroup>
 
 

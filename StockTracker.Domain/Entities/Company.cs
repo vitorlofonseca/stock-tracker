@@ -10,5 +10,6 @@ namespace StockTracker.Domain.Entities
         public string Name { get; set; }
         public string StockCode { get; set; }
         public StockExchange StockExchange { get; set; }
+        public List<News> News { get; set; }
     }
 }
