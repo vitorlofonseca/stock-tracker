@@ -23,6 +23,18 @@ namespace StockTracker.Infra.SignalR.Services
             _hub = hub;
             _companyRepository = companyRepository;
             _newsGetter = newsGetter;
+
+            initializeStreams();
+        }
+
+        private void initializeStreams()
+        {
+            var companies = _companyRepository.List();
+
+            foreach(var company in companies)
+            {
+                CreateNewsStream(company.StockExchange.Code, company.StockCode);
+            }
         }
 
         public void CreateNewsStream(string stockExchangeCode, string stockCode)
