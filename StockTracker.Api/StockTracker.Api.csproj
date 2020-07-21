@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StockTracker.Domain\StockTracker.Domain.csproj" />
     <ProjectReference Include="..\StockTracker.Infra.HttpConsumer\StockTracker.Infra.HttpConsumer.csproj" />
+    <ProjectReference Include="..\StockTracker.Infra.SignalR\StockTracker.Infra.SignalR.csproj" />
     <ProjectReference Include="..\StockTraker.Infra.DAL\StockTraker.Infra.DAL.csproj" />
   </ItemGroup>
 

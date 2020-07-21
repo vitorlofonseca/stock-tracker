@@ -3,7 +3,7 @@ using System;
 
 namespace StockTraker.Infra.DAL.RepositoryInterfaces
 {
-    public interface ISubscribersRepository
+    public interface ISubscriberRepository
     {
         Subscriber Insert(Subscriber Subscriber);
         Subscriber Get(Guid Id);

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTracker.Domain", "Stoc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTracker.Infra.HttpConsumer", "StockTracker.Infra.HttpConsumer\StockTracker.Infra.HttpConsumer.csproj", "{C29C51F0-8ADD-4048-BBBB-4B57A3F98B54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTraker.Infra.DAL", "StockTraker.Infra.DAL\StockTraker.Infra.DAL.csproj", "{1E95C900-AD7A-4804-9735-B9243B93425A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTraker.Infra.DAL", "StockTraker.Infra.DAL\StockTraker.Infra.DAL.csproj", "{1E95C900-AD7A-4804-9735-B9243B93425A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTracker.Infra.SignalR", "StockTracker.Infra.SignalR\StockTracker.Infra.SignalR.csproj", "{C3131E79-FEFB-488D-98E1-38C6DAAEEB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1E95C900-AD7A-4804-9735-B9243B93425A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E95C900-AD7A-4804-9735-B9243B93425A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E95C900-AD7A-4804-9735-B9243B93425A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3131E79-FEFB-488D-98E1-38C6DAAEEB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3131E79-FEFB-488D-98E1-38C6DAAEEB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3131E79-FEFB-488D-98E1-38C6DAAEEB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3131E79-FEFB-488D-98E1-38C6DAAEEB25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

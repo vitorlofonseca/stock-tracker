@@ -1,11 +1,12 @@
+using Compositions.Backend.Application.Api.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StockTracker.Api.Extensions;
-using StockTracker.Api.HubConfig;
 using StockTracker.Api.Services;
+using StockTracker.Infra.SignalR.HubConfig;
 
 namespace StockTracker
 {
@@ -32,6 +33,7 @@ namespace StockTracker
 
             services.AddSignalR();
             services.ConfigureHttpConsumerServices(Configuration);
+            services.ConfigureSignalRModule();
             services.ConfigureDALLayer(Configuration);
             services.ConfigureApiServices();
             services.ConfigureSwaggerGen();
@@ -54,6 +56,7 @@ namespace StockTracker
                 .UseRouting()
                 .UseCors("CorsPolicy")
                 .UseAuthorization()
+                .ConfigureCustomExceptionMiddleware()
                 .UseSwagger()
                 .UseSwaggerUI(c =>
                 {
@@ -62,7 +65,7 @@ namespace StockTracker
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
-                    endpoints.MapHub<NewsHub>("/news");
+                    endpoints.MapHub<NewsHub>("/initialize-hub");
                 });
         }
     }

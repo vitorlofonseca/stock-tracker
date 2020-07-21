@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson.Serialization;
+using StockTracker.Domain.Entities;
 using StockTraker.Infra.DAL.MongoRepositories;
 using StockTraker.Infra.DAL.RepositoryInterfaces;
 using StockTraker.Infra.DAL.Settings;
@@ -17,7 +19,7 @@ namespace StockTracker.Api.Extensions
             services.AddSingleton<IStockTrackerDatabaseSettings, StockTrackerMongoSettings>();
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ISubscribersRepository, SubscribersRepository>();
+            services.AddScoped<ISubscriberRepository, SubscriberRepository>();
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 
             return services;

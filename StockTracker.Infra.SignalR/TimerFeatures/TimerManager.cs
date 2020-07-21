@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace StockTracker.Api.TimerFeatures
+namespace StockTracker.Infra.SignalR.TimerFeatures
 {
     public class TimerManager
     {

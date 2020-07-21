@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization;
+using StockTracker.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +13,19 @@ namespace StockTraker.Infra.DAL.Settings
         public string DatabaseName { get; set; }
         public string CompaniesCollectionName { get; set; }
         public string SubscriptionsCollectionName { get; set; }
+
+        public StockTrackerMongoSettings()
+        {
+            configureEntities();
+        }
+
+        private void configureEntities()
+        {
+            BsonClassMap.RegisterClassMap<Company>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
+        }
     }
 }

@@ -14,7 +14,11 @@ namespace StockTraker.Infra.DAL.MongoRepositories
 
         public Subscription Insert(Subscription subscription)
         {
-            _subscriptions.InsertOne(subscription);
+            _subscriptions.ReplaceOneAsync(sub => 
+                sub.Subscriber.Id == subscription.Subscriber.Id && sub.Company.StockCode == subscription.Company.StockCode,
+            subscription,
+            new UpdateOptions { IsUpsert = true });
+
             return subscription;
         }
 

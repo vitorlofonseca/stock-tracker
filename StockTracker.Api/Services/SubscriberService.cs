@@ -7,9 +7,9 @@ namespace StockTracker.Api.Services
 {
     public class SubscriberService : ISubscriberService
     {
-        private ISubscribersRepository _subscriberRepository;
+        private ISubscriberRepository _subscriberRepository;
 
-        public SubscriberService(ISubscribersRepository subscriberRepository)
+        public SubscriberService(ISubscriberRepository subscriberRepository)
         {
             _subscriberRepository = subscriberRepository;
         }
