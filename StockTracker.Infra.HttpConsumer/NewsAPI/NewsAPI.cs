@@ -48,6 +48,7 @@ namespace StockTracker.Infra.Http.NewsAPI
                     )
                     .WithTitle(oneNewsDto.title)
                     .WithUrl(oneNewsDto.url)
+                    .WithImageUrl(oneNewsDto.urlToImage)
             ).ToList();
         }
 
@@ -60,7 +61,7 @@ namespace StockTracker.Infra.Http.NewsAPI
             var retrieveOptions = new Dictionary<string, string>
             {
                 { "from", DateTime.Now.ToString("yyyy-MM-dd") },
-                { "sortBy", "popularity" },
+                { "sortBy", "date" },
                 { "category", "business" }
             };
 

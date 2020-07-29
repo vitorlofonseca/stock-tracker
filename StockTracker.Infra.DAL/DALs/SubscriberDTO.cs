@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StockTraker.Infra.DAL.DALs
+namespace StockTracker.Infra.DAL.DALs
 {
     public class SubscriberDTO
     {

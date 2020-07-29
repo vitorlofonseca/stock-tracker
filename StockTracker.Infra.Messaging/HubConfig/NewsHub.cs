@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace StockTracker.Infra.SignalR.HubConfig
+namespace StockTracker.Infra.Messaging.HubConfig
 {
     public class NewsHub : Hub
     {

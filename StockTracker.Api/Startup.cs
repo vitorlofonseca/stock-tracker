@@ -6,7 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StockTracker.Api.Extensions;
 using StockTracker.Api.Services;
-using StockTracker.Infra.SignalR.HubConfig;
+using StockTracker.Infra.HttpConsumer.Messaging;
+using StockTracker.Infra.Messaging.HubConfig;
+using StockTracker.Infra.Messaging.Services;
+using System;
 
 namespace StockTracker
 {
@@ -31,22 +34,34 @@ namespace StockTracker
                 );
             });
 
-            services.AddSignalR();
             services.ConfigureHttpConsumerServices(Configuration);
-            services.ConfigureSignalRModule();
             services.ConfigureDALLayer(Configuration);
             services.ConfigureApiServices();
             services.ConfigureSwaggerGen();
 
             services.AddScoped<ISubscriberService, SubscriberService>();
-            services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<INewsService, NewsService>();
+            services.AddSignalR();
 
+            if (Environment.GetEnvironmentVariable("MESSAGING") == "SIGNALR")
+            {
+                services.AddScoped<INewsHubServices, NewsHubServicesSignalR>();
+            } 
+            else if (Environment.GetEnvironmentVariable("MESSAGING") == "TELEGRAM")
+            {
+                services.AddScoped<IMessageService, TelegramService>();
+                services.AddScoped<INewsHubServices, NewsHubServicesTelegram>();
+            }
+
+            services.AddScoped<ICompanyService, CompanyService>();
             services.AddControllers();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env,
+            INewsHubServices newsService
+        ){
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,12 +76,16 @@ namespace StockTracker
                 .UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock Tracker API");
-                })
-                .UseEndpoints(endpoints =>
+                });
+
+            if (Environment.GetEnvironmentVariable("MESSAGING") == "SIGNALR")
+            {
+                app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
                     endpoints.MapHub<NewsHub>("/initialize-hub");
                 });
+            }
         }
     }
 }

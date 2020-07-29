@@ -3,10 +3,10 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using StockTracker.Domain.Aggregates;
 using StockTracker.Domain.Entities;
-using StockTraker.Infra.DAL.DALs;
-using StockTraker.Infra.DAL.Settings;
+using StockTracker.Infra.DAL.DALs;
+using StockTracker.Infra.DAL.Settings;
 
-namespace StockTraker.Infra.DAL.MongoRepositories
+namespace StockTracker.Infra.DAL.MongoRepositories
 {
     public abstract class MongoContext
     {

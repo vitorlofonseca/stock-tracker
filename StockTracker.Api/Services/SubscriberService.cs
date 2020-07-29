@@ -1,7 +1,7 @@
 ﻿using StockTracker.Api.DTOs;
 using StockTracker.Domain.Builders;
 using StockTracker.Domain.Entities;
-using StockTraker.Infra.DAL.RepositoryInterfaces;
+using StockTracker.Infra.DAL.RepositoryInterfaces;
 
 namespace StockTracker.Api.Services
 {

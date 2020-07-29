@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StockTracker.Domain\StockTracker.Domain.csproj" />
+    <ProjectReference Include="..\StockTracker.Infra.DAL\StockTracker.Infra.DAL.csproj" />
     <ProjectReference Include="..\StockTracker.Infra.HttpConsumer\StockTracker.Infra.HttpConsumer.csproj" />
-    <ProjectReference Include="..\StockTraker.Infra.DAL\StockTraker.Infra.DAL.csproj" />
   </ItemGroup>
 
 </Project>

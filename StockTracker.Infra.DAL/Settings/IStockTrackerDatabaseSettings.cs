@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StockTraker.Infra.DAL.Settings
+namespace StockTracker.Infra.DAL.Settings
 {
     public interface IStockTrackerDatabaseSettings
     {

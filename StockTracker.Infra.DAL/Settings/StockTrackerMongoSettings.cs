@@ -1,10 +1,11 @@
 ﻿using MongoDB.Bson.Serialization;
+using StockTracker.Domain.Aggregates;
 using StockTracker.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StockTraker.Infra.DAL.Settings
+namespace StockTracker.Infra.DAL.Settings
 {
     public class StockTrackerMongoSettings : IStockTrackerDatabaseSettings
     {
@@ -22,6 +23,12 @@ namespace StockTraker.Infra.DAL.Settings
         private void configureEntities()
         {
             BsonClassMap.RegisterClassMap<Company>(cm =>
+            {
+                cm.AutoMap();
+                cm.SetIgnoreExtraElements(true);
+            });
+
+            BsonClassMap.RegisterClassMap<Subscription>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIgnoreExtraElements(true);

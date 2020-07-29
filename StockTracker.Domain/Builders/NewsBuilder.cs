@@ -41,6 +41,12 @@ namespace StockTracker.Domain.Builders
             return News;
         }
 
+        public static News WithImageUrl(this News News, string Url)
+        {
+            News.UrlToImage = Url;
+            return News;
+        }
+
         public static News WithPublishedAt(this News News, DateTime PublishedAt)
         {
             News.PublishedAt = PublishedAt;

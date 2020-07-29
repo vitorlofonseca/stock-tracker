@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using StockTracker.Domain.Entities;
-using StockTraker.Infra.DAL.RepositoryInterfaces;
-using StockTraker.Infra.DAL.Settings;
+using StockTracker.Infra.DAL.RepositoryInterfaces;
+using StockTracker.Infra.DAL.Settings;
 using System.Collections.Generic;
 
-namespace StockTraker.Infra.DAL.MongoRepositories
+namespace StockTracker.Infra.DAL.MongoRepositories
 {
     public class CompanyRepository: MongoContext, ICompanyRepository
     {
@@ -15,6 +16,14 @@ namespace StockTraker.Infra.DAL.MongoRepositories
         {
             _companies.InsertOne(company);
             return company;
+        }
+
+        public void Update(Company company)
+        {
+            _companies.ReplaceOne(dbCompany => 
+                dbCompany.StockCode == company.StockCode &&
+                dbCompany.StockExchange.Code == company.StockExchange.Code
+            , company);
         }
 
         public List<Company> List()

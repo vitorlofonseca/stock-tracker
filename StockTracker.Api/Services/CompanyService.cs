@@ -4,8 +4,8 @@ using StockTracker.Domain.Aggregates;
 using StockTracker.Domain.Builders;
 using StockTracker.Domain.Entities;
 using StockTracker.Domain.ValueObjects;
-using StockTracker.Infra.SignalR.Services;
-using StockTraker.Infra.DAL.RepositoryInterfaces;
+using StockTracker.Infra.DAL.RepositoryInterfaces;
+using StockTracker.Infra.Messaging.Services;
 using System;
 
 namespace StockTracker.Api.Services
@@ -42,9 +42,9 @@ namespace StockTracker.Api.Services
                     }
                 );
 
-            _companyRepository.Insert(company);
+            company = _companyRepository.Insert(company);
 
-            _newsHubService.CreateNewsStream(companyDTO.StockExchange.Code, companyDTO.StockCode);
+            _newsHubService.CreateNewsStream(company);
 
             return company;
         }

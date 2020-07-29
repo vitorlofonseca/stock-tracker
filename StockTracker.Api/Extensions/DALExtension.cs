@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson.Serialization;
 using StockTracker.Domain.Entities;
-using StockTraker.Infra.DAL.MongoRepositories;
-using StockTraker.Infra.DAL.RepositoryInterfaces;
-using StockTraker.Infra.DAL.Settings;
+using StockTracker.Infra.DAL.MongoRepositories;
+using StockTracker.Infra.DAL.RepositoryInterfaces;
+using StockTracker.Infra.DAL.Settings;
 
 namespace StockTracker.Api.Extensions
 {

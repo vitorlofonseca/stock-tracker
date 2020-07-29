@@ -17,13 +17,25 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "StockTracker": {
+    "StockTrackerApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MESSAGING": "SIGNALR"
+      }
+    },
+    "StockTrackerTelegram": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MESSAGING": "TELEGRAM",
+        "USER_ID": "6310f416-139d-4087-8e08-35d8d0ed0719"
       }
     }
   }

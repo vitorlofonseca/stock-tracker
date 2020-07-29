@@ -2,7 +2,7 @@
 using StockTracker.Domain.Entities;
 using System.Collections.Generic;
 
-namespace StockTraker.Infra.DAL.RepositoryInterfaces
+namespace StockTracker.Infra.DAL.RepositoryInterfaces
 {
     public interface ISubscriptionRepository
     {

@@ -1,7 +1,7 @@
 ﻿using StockTracker.Domain.Entities;
 using StockTracker.Domain.ValueObjects;
 using StockTracker.Infra.HttpConsumer.SPIs;
-using StockTraker.Infra.DAL.RepositoryInterfaces;
+using StockTracker.Infra.DAL.RepositoryInterfaces;
 using System.Collections.Generic;
 
 namespace StockTracker.Api.Services

@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using StockTracker.Domain.Entities;
+using StockTracker.Infra.DAL.RepositoryInterfaces;
 using StockTracker.Infra.HttpConsumer.SPIs;
-using StockTracker.Infra.SignalR.HubConfig;
-using StockTracker.Infra.SignalR.TimerFeatures;
-using StockTraker.Infra.DAL.RepositoryInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using StockTracker.Infra.Messaging.HubConfig;
+using StockTracker.Infra.Messaging.TimerFeatures;
 
-namespace StockTracker.Infra.SignalR.Services
+namespace StockTracker.Infra.Messaging.Services
 {
-    public class NewsHubServices: INewsHubServices
+    public class NewsHubServicesSignalR: INewsHubServices
     {
         private ICompanyRepository _companyRepository;
         private IHubContext<NewsHub> _hub;
         private INewsGetter _newsGetter;
 
-        public NewsHubServices(IHubContext<NewsHub> hub,
+        public NewsHubServicesSignalR(IHubContext<NewsHub> hub,
             ICompanyRepository companyRepository,
             INewsGetter newsGetter
         )
@@ -33,17 +31,16 @@ namespace StockTracker.Infra.SignalR.Services
 
             foreach(var company in companies)
             {
-                CreateNewsStream(company.StockExchange.Code, company.StockCode);
+                CreateNewsStream(company);
             }
         }
 
-        public void CreateNewsStream(string stockExchangeCode, string stockCode)
+        public void CreateNewsStream(Company company)
         {
-            var company = _companyRepository.Get(stockCode, stockExchangeCode);
 
             new TimerManager(() =>
                 _hub.Clients.All.SendAsync(
-                    $"subscription_{stockExchangeCode}:{stockCode}",
+                    $"subscription_{company.StockExchange.Code}:{company.StockCode}",
                     _newsGetter.GetNewsByCompany(company).Result
                 )
             );
